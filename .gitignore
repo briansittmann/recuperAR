@@ -1,0 +1,29 @@
+# ── Configuración sensible ──────────────────────────────────────
+backend/api/config/db.php
+backend/api/config/jwt.php
+
+# ── Script de setup (uso único, no debe quedar en el repo) ──────
+backend/api/setup_admin.php
+
+# ── Imágenes subidas por usuarios ───────────────────────────────
+backend/api/uploads/*
+!backend/api/uploads/.gitkeep
+
+# ── SQL de setup (contiene info de estructura interna) ──────────
+backend/api/setup.sql
+
+# ── Sistema operativo ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Frontend React (cuando lo crees) ────────────────────────────
+frontend/node_modules/
+frontend/.env
+frontend/.env.local
+frontend/dist/
+frontend/build/
+
+# ── IDEs ─────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
