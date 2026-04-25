@@ -1,0 +1,88 @@
+.contact-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 28, 46, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+.contact-modal__backdrop.is-open {
+  background: rgba(13, 28, 46, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: auto;
+}
+
+.contact-modal {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 1rem;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1),
+              opacity 0.25s ease;
+}
+.contact-modal__backdrop.is-open .contact-modal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .contact-modal__backdrop {
+    align-items: center;
+    padding: 1rem;
+  }
+  .contact-modal {
+    padding: 0;
+  }
+}
+
+/* Override .contact__card responsive for modal context */
+.contact-modal .contact__card {
+  border-radius: 2rem;
+  box-shadow: 0 32px 80px rgba(13, 28, 46, 0.25);
+}
+
+/* Close button floats over the card */
+.contact-modal__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(13, 28, 46, 0.15);
+  transition: background 0.2s, transform 0.15s, color 0.2s;
+  z-index: 2;
+}
+.contact-modal__close:hover {
+  background: #ffffff;
+}
+.contact-modal__close:active {
+  transform: scale(0.92);
+}
+.contact-modal__close .material-symbols-outlined {
+  font-size: 1.375rem;
+}
+
+@media (max-width: 1024px) {
+  .contact-modal__close {
+    top: 1rem;
+    right: 1rem;
+  }
+}

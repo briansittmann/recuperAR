@@ -1,0 +1,224 @@
+/* ── Bento metrics grid ─────────────────────────────────────────────────── */
+.admin-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(159, 205, 247, 0.12),
+              inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -8px rgba(159, 205, 247, 0.32),
+              inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.metric-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.metric-card__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.metric-card__icon .material-symbols-outlined {
+  font-size: 1.375rem;
+}
+
+.metric-card__icon--primary {
+  background: rgba(159, 205, 247, 0.3);
+  color: var(--primary-onDark);
+}
+.metric-card__icon--success {
+  background: #d1fae5;
+  color: #047857;
+}
+.metric-card__icon--warning {
+  background: #fef3c7;
+  color: #b45309;
+}
+.metric-card__icon--info {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.metric-card__badge {
+  font-size: var(--font-caption-size);
+  font-weight: 600;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+.metric-card__badge--success { background: #d1fae5; color: #047857; }
+.metric-card__badge--info    { background: rgba(159, 205, 247, 0.3); color: var(--primary-onDark); }
+.metric-card__badge--warning { background: #fef3c7; color: #92400e; }
+
+.metric-card__label {
+  font-size: var(--font-label-md-size);
+  color: var(--secondary);
+  margin-bottom: 0.25rem;
+}
+
+.metric-card__value {
+  font-size: clamp(1.5rem, 2.5vw, var(--font-headline-lg-size));
+  font-weight: var(--font-headline-lg-weight);
+  letter-spacing: var(--font-headline-lg-spacing);
+  color: var(--on-background);
+  line-height: 1.1;
+}
+
+/* ── Recent orders table ────────────────────────────────────────────────── */
+.admin-table-wrap {
+  overflow-x: auto;
+  margin: 0 -0.5rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table thead th {
+  text-align: left;
+  padding: 0 1rem 0.875rem;
+  font-size: var(--font-caption-size);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  border-bottom: 1px solid rgba(159, 205, 247, 0.3);
+  white-space: nowrap;
+}
+
+.admin-table tbody tr {
+  transition: background 0.2s;
+}
+.admin-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.admin-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(159, 205, 247, 0.15);
+  font-size: var(--font-label-md-size);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table__id {
+  font-weight: 600;
+  color: var(--on-background);
+  white-space: nowrap;
+}
+
+.admin-table__customer {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.admin-table__avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--surface-container-highest);
+  color: var(--primary-onDark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.admin-table__customer-info {
+  min-width: 0;
+}
+.admin-table__customer-name {
+  font-weight: 500;
+  color: var(--on-background);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 14rem;
+}
+.admin-table__customer-email {
+  font-size: var(--font-caption-size);
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 14rem;
+}
+
+.admin-table__amount {
+  font-weight: 600;
+  color: var(--on-background);
+  white-space: nowrap;
+}
+
+.admin-table__date {
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.admin-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.admin-status::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.admin-status--pending   { background: #fef3c7; color: #92400e; }
+.admin-status--paid      { background: #d1fae5; color: #047857; }
+.admin-status--shipped   { background: rgba(159, 205, 247, 0.4); color: var(--primary-onDark); }
+.admin-status--delivered { background: var(--surface-container-low); color: var(--secondary); }
+.admin-status--cancelled { background: var(--error-container); color: var(--on-error-container); }
+
+/* ── Empty state ────────────────────────────────────────────────────────── */
+.admin-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--secondary);
+}
+.admin-empty .material-symbols-outlined {
+  font-size: 2.5rem;
+  color: var(--outline-variant);
+  margin-bottom: 0.5rem;
+  display: block;
+}

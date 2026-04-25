@@ -28,4 +28,9 @@ $stmt2->bind_param('i', $id);
 $stmt2->execute();
 $product['variants'] = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC);
 
+$stmt3 = $conn->prepare('SELECT id, image, sort_order FROM product_images WHERE product_id = ? ORDER BY sort_order ASC');
+$stmt3->bind_param('i', $id);
+$stmt3->execute();
+$product['images'] = $stmt3->get_result()->fetch_all(MYSQLI_ASSOC);
+
 success($product);

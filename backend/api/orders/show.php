@@ -10,19 +10,24 @@ if (!$id) error('ID requerido');
 
 $conn = getConnection();
 
-$stmt = $conn->prepare('SELECT id, email, total, status, payment_method, created_at FROM orders WHERE id = ?');
+$stmt = $conn->prepare(
+    'SELECT id, email, name, phone, address, city, province, postal_code,
+            total, status, payment_method, created_at
+     FROM orders WHERE id = ?'
+);
 $stmt->bind_param('i', $id);
 $stmt->execute();
 $order = $stmt->get_result()->fetch_assoc();
 if (!$order) error('Orden no encontrada', 404);
 
 $stmt2 = $conn->prepare(
-    'SELECT oi.id, oi.quantity, oi.price,
-            p.name AS product_name, p.image AS product_image,
+    'SELECT oi.id, oi.quantity, oi.price, oi.product_id, oi.variant_id,
+            COALESCE(p.name, "(Producto eliminado)")  AS product_name,
+            p.image AS product_image,
             pv.size
      FROM order_items oi
-     JOIN products p ON oi.product_id = p.id
-     JOIN product_variants pv ON oi.variant_id = pv.id
+     LEFT JOIN products p          ON oi.product_id = p.id
+     LEFT JOIN product_variants pv ON oi.variant_id = pv.id
      WHERE oi.order_id = ?'
 );
 $stmt2->bind_param('i', $id);

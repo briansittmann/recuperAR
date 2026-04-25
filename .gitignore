@@ -1,6 +1,7 @@
 # ── Configuración sensible ──────────────────────────────────────
 backend/api/config/db.php
 backend/api/config/jwt.php
+backend/api/config/payment.php
 
 # ── Script de setup (uso único, no debe quedar en el repo) ──────
 backend/api/setup_admin.php
@@ -27,3 +28,9 @@ frontend/build/
 .vscode/
 .idea/
 *.swp
+
+# ── Claude Code (settings locales) ──────────────────────────────
+.claude/
+
+# ── Backups locales ─────────────────────────────────────────────
+*.zip

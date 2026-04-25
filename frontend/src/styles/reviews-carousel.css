@@ -1,0 +1,130 @@
+.reviews-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 0 3rem;
+}
+
+.reviews-carousel__track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reviews-carousel__item {
+  min-width: 100%;
+  padding: 0 0.5rem;
+}
+
+.review-card {
+  border-radius: 2rem;
+  padding: 2rem 2.5rem;
+  border: 1px solid rgba(159, 205, 247, 0.2);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.review-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-card__avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.review-card__name {
+  font-size: var(--font-label-md-size);
+  font-weight: 600;
+  color: var(--on-background);
+  line-height: 1.4;
+}
+
+.review-card__time {
+  font-size: var(--font-caption-size);
+  color: var(--secondary);
+  margin-top: 0.125rem;
+}
+
+.review-card__stars {
+  display: flex;
+  gap: 0.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-card__star {
+  color: #f59e0b;
+  font-size: 1.125rem;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.review-card__text {
+  font-size: var(--font-body-md-size);
+  line-height: var(--font-body-md-height);
+  color: var(--on-surface);
+  font-style: italic;
+}
+
+.reviews-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s;
+  z-index: 1;
+  color: var(--on-background);
+}
+
+.reviews-carousel__btn:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.reviews-carousel__btn--prev {
+  left: 0;
+}
+
+.reviews-carousel__btn--next {
+  right: 0;
+}
+
+.reviews-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.reviews-carousel__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--outline-variant);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.reviews-carousel__dot--active {
+  background: var(--primary);
+  width: 1.5rem;
+}

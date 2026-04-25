@@ -1,0 +1,133 @@
+:root {
+  --header-height: 80px;
+
+  /* ─── COLOR PRIMARIO ───────────────────────────────────────────────────────
+     El azul principal de la marca. Usado en botones, íconos activos,
+     títulos de sección, bordes de foco y el header logo.
+     Cambiar --primary cambia el color dominante de todo el sitio. */
+  --primary:  #9fcdf7;
+  --primary-onDark: #3d7cac;
+  --on-primary: #ffffff;              /* texto sobre fondo --primary */
+  --primary-container: #9fcdf7;       /* versión clara — hover de botones, badges del carrito */
+  --on-primary-container: #ffffff;    /* texto sobre --primary-container */
+  --primary-fixed: #cce5ff;           /* variante muy clara, uso decorativo */
+  --primary-fixed-dim: #9dcbf5;
+  --on-primary-fixed: #001d31;
+  --on-primary-fixed-variant: #3EA2FF;
+  --inverse-primary: #9dcbf5;         /* usado en superficies oscuras */
+
+  /* ─── COLOR SECUNDARIO ─────────────────────────────────────────────────────
+     Gris azulado. Usado en texto de apoyo, subtítulos, descripciones
+     y labels de formulario. */
+  --secondary: #575e72;
+  --on-secondary: #dbd7d7;
+  --secondary-container: #dbe2fa;     /* fondo de chips o etiquetas secundarias */
+  --on-secondary-container: #5d6478;
+  --secondary-fixed: #dbe2fa;
+  --secondary-fixed-dim: #bfc6dd;
+  --on-secondary-fixed: #141b2c;
+  --on-secondary-fixed-variant: #3f4759;
+
+  /* ─── COLOR TERCIARIO ──────────────────────────────────────────────────────
+     Gris neutro. Disponible para acentos adicionales si se necesitan
+     en el futuro (actualmente poco usado). */
+  --tertiary: #576065;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #c0c9cf;
+  --on-tertiary-container: #4c555a;
+
+  /* ─── ERROR ────────────────────────────────────────────────────────────────
+     Rojo para mensajes de error en formularios y validaciones. */
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;         /* fondo de alertas de error */
+  --on-error-container: #93000a;      /* texto dentro de alertas de error */
+
+  /* ─── FONDO Y SUPERFICIE ───────────────────────────────────────────────────
+     --background: fondo general de todas las páginas (blanco azulado).
+     --surface: igual que background, para componentes individuales.
+     --on-background / --on-surface: color del texto principal sobre esos fondos. */
+  --background: #f8f9ff;
+  --on-background: #0d1c2e;
+  --surface: #f8f9ff;
+  --on-surface: #0d1c2e;
+  --surface-variant: #d5e3fc;
+  --on-surface-variant: #41474e;
+
+  /* ─── CAPAS DE SUPERFICIE ──────────────────────────────────────────────────
+     Escala de azules muy claros para dar profundidad a secciones y tarjetas.
+     -lowest es el más claro (blanco puro), -highest es el más azulado.
+     Usados en: fondo de secciones destacadas, imágenes de producto,
+     inputs de formulario, fondo del carrusel de reseñas. */
+  --surface-dim: #ccdbf3;
+  --surface-bright: #f8f9ff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eff4ff;   /* sección "Productos Destacados", "Scroll to top" */
+  --surface-container: #e6eeff;
+  --surface-container-high: #dce9ff;
+  --surface-container-highest: #d5e3fc; /* fondo placeholder de imágenes de producto */
+  --surface-tint: #336287;
+  --inverse-surface: #233144;         /* fondo oscuro para tooltips o snackbars */
+  --inverse-on-surface: #eaf1ff;      /* texto sobre --inverse-surface */
+
+  /* ─── BORDES Y SEPARADORES ─────────────────────────────────────────────────
+     --outline: bordes visibles (inputs, divisores fuertes).
+     --outline-variant: bordes sutiles (separadores, dots del carrusel). */
+  --outline: #72787f;
+  --outline-variant: #c1c7cf;
+
+  /* ─── TIPOGRAFÍA ───────────────────────────────────────────────────────────
+     No se documentan en detalle — ver DESIGN.md para la escala completa. */
+  --font-family: 'Outfit', sans-serif;
+
+  --font-display-lg-size: 48px;
+  --font-display-lg-height: 56px;
+  --font-display-lg-weight: 700;
+  --font-display-lg-spacing: -0.02em;
+
+  --font-headline-lg-size: 32px;
+  --font-headline-lg-height: 40px;
+  --font-headline-lg-weight: 600;
+  --font-headline-lg-spacing: -0.01em;
+
+  --font-headline-md-size: 24px;
+  --font-headline-md-height: 32px;
+  --font-headline-md-weight: 600;
+
+  --font-body-lg-size: 18px;
+  --font-body-lg-height: 28px;
+  --font-body-lg-weight: 400;
+
+  --font-body-md-size: 16px;
+  --font-body-md-height: 24px;
+  --font-body-md-weight: 400;
+
+  --font-label-md-size: 14px;
+  --font-label-md-height: 20px;
+  --font-label-md-weight: 500;
+  --font-label-md-spacing: 0.01em;
+
+  --font-caption-size: 12px;
+  --font-caption-height: 16px;
+  --font-caption-weight: 500;
+
+  /* ─── ESPACIADO ────────────────────────────────────────────────────────────
+     Escala base de 4px. Usar estos valores para márgenes y paddings
+     en lugar de valores hardcodeados. */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 4rem;
+  --spacing-gutter: 1.5rem;   /* padding lateral de los contenedores */
+
+  /* ─── BORDES REDONDEADOS ───────────────────────────────────────────────────
+     Escala de border-radius. Las tarjetas grandes usan --radius-xl,
+     los botones pill usan --radius-full. */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
