@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import Header from '../../components/common/Header.jsx'
 import Footer from '../../components/common/Footer.jsx'
 import Loader from '../../components/common/Loader.jsx'
+import ContactModal from '../../components/common/ContactModal.jsx'
 import { getProduct, getProducts } from '../../api/products.js'
 import { useCart } from '../../context/CartContext.jsx'
 import { formatPrice } from '../../utils/formatPrice.js'
@@ -30,6 +31,7 @@ export default function ProductDetail() {
   const [activeImage, setActiveImage] = useState(null)
   const [loading, setLoading]         = useState(true)
   const [added, setAdded]             = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
 
   useEffect(() => {
     if (!id) {
@@ -91,6 +93,7 @@ export default function ProductDetail() {
 
   const hasVariants = product.variants?.length > 0
   const price       = selectedVariant?.price
+  const isInquiry   = !hasVariants || !price
 
   // Galería = portada + imágenes adicionales (filtramos duplicados si la portada también está en la galería)
   const allImages = [
@@ -181,17 +184,25 @@ export default function ProductDetail() {
             )}
 
             <div className="product-actions">
-              <button
-                type="button"
-                className="btn btn--primary"
-                onClick={handleAdd}
-                disabled={!selectedVariant || selectedVariant.stock === 0}
-              >
-                <span className="material-symbols-outlined">shopping_bag</span>
-                {added ? '¡Agregado al carrito!' : 'Añadir al Carrito'}
-              </button>
-              {!hasVariants && (
-                <p className="product-cart-feedback">Consultá disponibilidad</p>
+              {isInquiry ? (
+                <button
+                  type="button"
+                  className="btn btn--primary"
+                  onClick={() => setContactOpen(true)}
+                >
+                  <span className="material-symbols-outlined">mail</span>
+                  Consultar
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn--primary"
+                  onClick={handleAdd}
+                  disabled={!selectedVariant || selectedVariant.stock === 0}
+                >
+                  <span className="material-symbols-outlined">shopping_bag</span>
+                  {added ? '¡Agregado al carrito!' : 'Añadir al Carrito'}
+                </button>
               )}
             </div>
 
@@ -285,6 +296,13 @@ export default function ProductDetail() {
           <span>Contacto</span>
         </a>
       </nav>
+
+      <ContactModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        initialSubject={`Consulta sobre ${product.name}`}
+        initialMessage={`Hola, me interesa el producto "${product.name}". ¿Podrían darme más información sobre disponibilidad y precio? Gracias.`}
+      />
 
       <Footer />
     </div>

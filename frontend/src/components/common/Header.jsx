@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext.jsx'
 import ContactModal from './ContactModal.jsx'
@@ -12,6 +12,18 @@ export default function Header() {
   const [scrolled, setScrolled]       = useState(false)
   const [menuOpen, setMenuOpen]       = useState(false)
   const [contactOpen, setContactOpen] = useState(false)
+  const [cartBump, setCartBump]       = useState(false)
+  const prevCount = useRef(count)
+
+  useEffect(() => {
+    if (count > prevCount.current) {
+      setCartBump(true)
+      const t = setTimeout(() => setCartBump(false), 600)
+      prevCount.current = count
+      return () => clearTimeout(t)
+    }
+    prevCount.current = count
+  }, [count])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -77,12 +89,15 @@ export default function Header() {
             <NavLink to="/catalogo" className={({ isActive }) => `header__link${isActive ? ' header__link--active' : ''}`}>
               Catálogo
             </NavLink>
+            <NavLink to="/quienes-somos" className={({ isActive }) => `header__link${isActive ? ' header__link--active' : ''}`}>
+              Quiénes Somos
+            </NavLink>
             <a href="/#contacto" className="header__link" onClick={handleContact}>Contacto</a>
           </nav>
 
-          <Link to="/carrito" className={`header__cart${location.pathname === '/carrito' ? ' header__cart--active' : ''}`}>
+          <Link to="/carrito" className={`header__cart${location.pathname === '/carrito' ? ' header__cart--active' : ''}${cartBump ? ' header__cart--bump' : ''}`}>
             <span className="material-symbols-outlined">shopping_cart</span>
-            {count > 0 && <span className="header__cart-badge">{count}</span>}
+            {count > 0 && <span className={`header__cart-badge${cartBump ? ' header__cart-badge--pulse' : ''}`}>{count}</span>}
           </Link>
         </div>
       </header>
@@ -119,6 +134,13 @@ export default function Header() {
           >
             <span className="material-symbols-outlined">grid_view</span>
             Catálogo
+          </NavLink>
+          <NavLink
+            to="/quienes-somos"
+            className={({ isActive }) => `mobile-drawer__link${isActive ? ' mobile-drawer__link--active' : ''}`}
+          >
+            <span className="material-symbols-outlined">groups</span>
+            Quiénes Somos
           </NavLink>
           <NavLink
             to="/carrito"

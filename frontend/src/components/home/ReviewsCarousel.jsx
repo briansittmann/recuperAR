@@ -39,9 +39,15 @@ const REVIEWS = [
   },
 ]
 
+const SWIPE_THRESHOLD = 60 // px
+
 export default function ReviewsCarousel() {
   const [current, setCurrent] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
+  const [dragging, setDragging] = useState(false)
   const timerRef = useRef(null)
+  const startXRef = useRef(0)
+  const draggingRef = useRef(false)
 
   const startTimer = () => {
     clearInterval(timerRef.current)
@@ -60,31 +66,68 @@ export default function ReviewsCarousel() {
     startTimer()
   }
 
+  const handlePointerDown = (e) => {
+    if (e.button !== undefined && e.button !== 0) return
+    draggingRef.current = true
+    setDragging(true)
+    startXRef.current = e.clientX
+    clearInterval(timerRef.current)
+    e.currentTarget.setPointerCapture?.(e.pointerId)
+  }
+
+  const handlePointerMove = (e) => {
+    if (!draggingRef.current) return
+    setDragOffset(e.clientX - startXRef.current)
+  }
+
+  const endDrag = (e) => {
+    if (!draggingRef.current) return
+    draggingRef.current = false
+    const offset = (e.clientX ?? startXRef.current) - startXRef.current
+    setDragging(false)
+    setDragOffset(0)
+    if (offset > SWIPE_THRESHOLD)        goTo(current - 1)
+    else if (offset < -SWIPE_THRESHOLD)  goTo(current + 1)
+    else                                 startTimer()
+  }
+
+  const trackStyle = {
+    transform: dragging
+      ? `translateX(calc(-${current * 100}% + ${dragOffset}px))`
+      : `translateX(-${current * 100}%)`,
+    transition: dragging ? 'none' : undefined,
+  }
+
   return (
     <div className="reviews-carousel">
       <div
-        className="reviews-carousel__track"
-        style={{ transform: `translateX(-${current * 100}%)` }}
+        className={`reviews-carousel__viewport${dragging ? ' is-dragging' : ''}`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
       >
-        {REVIEWS.map(review => (
-          <div key={review.id} className="reviews-carousel__item">
-            <div className="glass-card review-card">
-              <div className="review-card__header">
-                <div className="review-card__avatar">{review.name.charAt(0)}</div>
-                <div>
-                  <p className="review-card__name">{review.name}</p>
-                  <p className="review-card__time">{review.time}</p>
+        <div className="reviews-carousel__track" style={trackStyle}>
+          {REVIEWS.map(review => (
+            <div key={review.id} className="reviews-carousel__item">
+              <div className="glass-card review-card">
+                <div className="review-card__header">
+                  <div className="review-card__avatar">{review.name.charAt(0)}</div>
+                  <div>
+                    <p className="review-card__name">{review.name}</p>
+                    <p className="review-card__time">{review.time}</p>
+                  </div>
                 </div>
+                <div className="review-card__stars">
+                  {Array.from({ length: review.rating }).map((_, i) => (
+                    <span key={i} className="material-symbols-outlined review-card__star">star</span>
+                  ))}
+                </div>
+                <p className="review-card__text">"{review.text}"</p>
               </div>
-              <div className="review-card__stars">
-                {Array.from({ length: review.rating }).map((_, i) => (
-                  <span key={i} className="material-symbols-outlined review-card__star">star</span>
-                ))}
-              </div>
-              <p className="review-card__text">"{review.text}"</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <button className="reviews-carousel__btn reviews-carousel__btn--prev" onClick={() => goTo(current - 1)} aria-label="Anterior">

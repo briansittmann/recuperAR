@@ -20,6 +20,14 @@
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--primary);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footer__logo:hover {
+  color: var(--primary-onDark);
+  transform: translateY(-2px);
 }
 
 .footer__tagline {
@@ -51,6 +59,24 @@
 }
 
 .footer__links a:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.footer__link-btn {
+  font-family: inherit;
+  font-size: var(--font-body-md-size);
+  color: var(--secondary);
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  align-self: flex-start;
+}
+
+.footer__link-btn:hover {
   color: var(--primary);
   transform: translateY(-2px);
 }

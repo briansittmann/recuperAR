@@ -67,7 +67,7 @@ export default function Cart() {
                   </div>
                   <div className="cart-summary__row">
                     <span>Envío</span>
-                    <span className="cart-summary__free">Gratis</span>
+                    <span className="cart-summary__free">Gratis a todo AMBA</span>
                   </div>
                 </div>
                 <div className="cart-summary__divider" />

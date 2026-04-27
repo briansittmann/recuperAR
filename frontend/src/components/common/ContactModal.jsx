@@ -3,7 +3,7 @@ import ContactCard from './ContactCard.jsx'
 import '../../styles/home.css'
 import '../../styles/contact-modal.css'
 
-export default function ContactModal({ open, onClose }) {
+export default function ContactModal({ open, onClose, initialSubject = '', initialMessage = '' }) {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden'
@@ -33,7 +33,7 @@ export default function ContactModal({ open, onClose }) {
           <span className="material-symbols-outlined">close</span>
         </button>
         <div className="contact__card">
-          <ContactCard onSubmitted={onClose} />
+          <ContactCard onSubmitted={onClose} initialSubject={initialSubject} initialMessage={initialMessage} />
         </div>
       </div>
     </div>

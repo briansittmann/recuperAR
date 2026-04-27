@@ -1,17 +1,30 @@
 .reviews-carousel {
   position: relative;
-  overflow: hidden;
   padding: 0 3rem;
+}
+
+.reviews-carousel__viewport {
+  overflow-x: clip;
+  overflow-y: visible;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.reviews-carousel__viewport.is-dragging {
+  cursor: grabbing;
 }
 
 .reviews-carousel__track {
   display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .reviews-carousel__item {
   min-width: 100%;
-  padding: 0 0.5rem;
+  padding: 0.75rem 0.5rem;
 }
 
 .review-card {
@@ -20,6 +33,22 @@
   border: 1px solid rgba(159, 205, 247, 0.2);
   max-width: 640px;
   margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: scale(1.025);
+  box-shadow: 0 18px 40px -12px rgba(159, 205, 247, 0.55),
+              0 8px 20px -6px rgba(51, 98, 135, 0.2);
+}
+
+.reviews-carousel__viewport.is-dragging .review-card {
+  transition: none;
+}
+
+.reviews-carousel__viewport.is-dragging .review-card:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .review-card__header {

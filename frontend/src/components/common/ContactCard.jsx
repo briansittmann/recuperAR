@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import hablamosImage from '../../assets/contact.jpeg'
 
-export default function ContactCard({ onSubmitted }) {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+export default function ContactCard({ onSubmitted, initialSubject = '', initialMessage = '' }) {
+  const [form, setForm] = useState({ name: '', email: '', subject: initialSubject, message: initialMessage })
 
   const setField = (f) => (e) => setForm(s => ({ ...s, [f]: e.target.value }))
 

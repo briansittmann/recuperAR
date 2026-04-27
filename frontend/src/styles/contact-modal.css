@@ -68,16 +68,20 @@
   justify-content: center;
   box-shadow: 0 4px 12px rgba(13, 28, 46, 0.15);
   transition: background 0.2s, transform 0.15s, color 0.2s;
-  z-index: 2;
+  z-index: 10;
 }
 .contact-modal__close:hover {
   background: #ffffff;
+}
+.contact-modal__close:hover .material-symbols-outlined {
+  transform: rotate(90deg);
 }
 .contact-modal__close:active {
   transform: scale(0.92);
 }
 .contact-modal__close .material-symbols-outlined {
   font-size: 1.375rem;
+  transition: transform 0.3s ease;
 }
 
 @media (max-width: 1024px) {

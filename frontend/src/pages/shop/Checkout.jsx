@@ -150,7 +150,7 @@ export default function Checkout() {
               </div>
               <div className="checkout-total-card__row checkout-total-card__row--free">
                 <span>Envío</span>
-                <span>Gratis</span>
+                <span>Gratis a todo AMBA</span>
               </div>
             </div>
           </section>
@@ -309,7 +309,7 @@ export default function Checkout() {
                 </div>
 
                 <p className="payment-note">
-                  Te vamos a enviar los datos bancarios por email cuando finalices la orden, para que puedas hacer la transferencia.
+                  Te indicaremos los pasos para poder realizar tu pago por transferencia bancaria.
                 </p>
 
                 <div className="security-card">

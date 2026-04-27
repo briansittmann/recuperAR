@@ -192,6 +192,17 @@
   box-shadow: 0 4px 16px -6px rgba(159, 205, 247, 0.25);
   position: relative;
   overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.checkout-total-card:hover,
+.checkout-summary-grid .checkout-card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 28px 56px -12px rgba(159, 205, 247, 0.55),
+              0 12px 28px -6px rgba(51, 98, 135, 0.25);
+}
+
+.checkout-summary-grid .checkout-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .checkout-total-card__label {
